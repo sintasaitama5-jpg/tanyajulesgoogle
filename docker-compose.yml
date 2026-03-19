@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    container_name: invoice_app
+    restart: unless-stopped
+    ports:
+      - "8010:80"
+    volumes:
+      - ./data:/var/www/html/data
+      - ./uploads:/var/www/html/uploads
+      - ./pdfs:/var/www/html/pdfs
+    networks:
+      - invoice_net
+
+networks:
+  invoice_net:
+    driver: bridge
